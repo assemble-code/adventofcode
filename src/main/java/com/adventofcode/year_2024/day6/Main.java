@@ -33,12 +33,14 @@ public class Main {
                 }
             }
         }
+
         ArrayList<char[]> layoutPartOne = new ArrayList<>(layout);
+        int count = partOne(layoutPartOne, guard);
+        System.out.println("part 1 --> " + count);
 
-        partOne(layoutPartOne, guard);
 
-        int count = 0;
-
+        //another way to count the number of unique 'X'
+        count = 0;
         for (char[] chars : layoutPartOne) {
             for (char aChar : chars) {
                 if (aChar == 'X') {
@@ -80,8 +82,8 @@ public class Main {
     }
 
 
-    static void partOne(List<char[]> layout, int[] guard) {
-
+    static int partOne(List<char[]> layout, int[] guard) {
+        int count = 0;
         int[][] direction = new int[][]{{-1, 0}, {0, 1}, {1, 0}, {0, -1}}; // up , right, bottom, left;
 
         //starting position for the guard, and it will start moving to up by default;
@@ -94,6 +96,11 @@ public class Main {
         //now check at which point guard moves out of bound
 
         while (true) {
+            //increase only when we have not visited already
+            if (layout.get(row)[col] != 'X') {
+                count++;
+            }
+
             //if we are at the position then mark it as visited by assign it the value of 'X'
             layout.get(row)[col] = 'X';
 
@@ -121,7 +128,7 @@ public class Main {
             col = nextCol;
 
         }
-
+        return count;
     }
 
     static boolean partTwo(List<char[]> layout, int[] guard) {
