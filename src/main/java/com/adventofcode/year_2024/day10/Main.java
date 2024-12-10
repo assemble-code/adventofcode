@@ -77,9 +77,7 @@ public class Main {
 
                     sum += dfsPart2(lines, i, j, 0);
 
-
                 }
-
 
             }
         }
@@ -107,26 +105,16 @@ public class Main {
         //but we move in the direction only if the elevation is present
 
 
-        int a = 0;
-        int b = 0;
-        int c = 0;
-        int d = 0;
+        int a = dfsPart2(lines, i + 1, j, nextElevation);
 
-        // if (lines.get(i + 1)[j] == nextElevation) {
-        a = dfsPart2(lines, i + 1, j, nextElevation);
-        //  }
-        //  if (lines.get(i)[j + 1] == nextElevation) {
-        b = dfsPart2(lines, i, j + 1, nextElevation);
-        //   }
-        //  if (lines.get(i - 1)[j] == nextElevation) {
-        c = dfsPart2(lines, i - 1, j, nextElevation);
-        //   }
-        // if (lines.get(i)[j - 1] == nextElevation) {
-        d = dfsPart2(lines, i, j - 1, nextElevation);
-        // }
+        int b = dfsPart2(lines, i, j + 1, nextElevation);
+
+        int c = dfsPart2(lines, i - 1, j, nextElevation);
+
+        int d = dfsPart2(lines, i, j - 1, nextElevation);
 
 
-        return a + b + c + d; // no peak found
+        return a + b + c + d;
     }
 
 
@@ -149,25 +137,15 @@ public class Main {
         //but we move in the direction only if the elevation is present
 
 
-        int a = 0;
-        int b = 0;
-        int c = 0;
-        int d = 0;
+        int a = dfsPart1(lines, i + 1, j, nextElevation, visited);
 
-        // if (lines.get(i + 1)[j] == nextElevation) {
-        a = dfsPart1(lines, i + 1, j, nextElevation, visited);
-        //  }
-        //  if (lines.get(i)[j + 1] == nextElevation) {
-        b = dfsPart1(lines, i, j + 1, nextElevation, visited);
-        //   }
-        //  if (lines.get(i - 1)[j] == nextElevation) {
-        c = dfsPart1(lines, i - 1, j, nextElevation, visited);
-        //   }
-        // if (lines.get(i)[j - 1] == nextElevation) {
-        d = dfsPart1(lines, i, j - 1, nextElevation, visited);
-        // }
+        int b = dfsPart1(lines, i, j + 1, nextElevation, visited);
+
+        int c = dfsPart1(lines, i - 1, j, nextElevation, visited);
+
+        int d = dfsPart1(lines, i, j - 1, nextElevation, visited);
 
 
-        return a + b + c + d; // no peak found
+        return a + b + c + d;
     }
 }
